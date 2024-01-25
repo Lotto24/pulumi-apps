@@ -10,7 +10,6 @@ const desiredCapacity = config.getNumber("desiredCapacity");
 const minSize = config.getNumber("minSize");
 const maxSize = config.getNumber("maxSize");
 const storageClass = config.get("storageClass") as eks.EBSVolumeType;
-const deployDashboard = config.getBoolean("deployDashboard");
 
 // Create a VPC for our cluster.
 const vpc = new awsx.ec2.Vpc("eksvpc", {});
@@ -24,7 +23,6 @@ const cluster = new eks.Cluster("cluster", {
     minSize: minSize,
     maxSize: maxSize,
     storageClasses: storageClass,
-    deployDashboard: deployDashboard,
 });
 
 // Export the cluster's kubeconfig.
