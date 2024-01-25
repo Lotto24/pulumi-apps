@@ -25,7 +25,7 @@ const cluster = new eks.Cluster("cluster", {
     storageClasses: storageClass,
 });
 
-// Add the vpc-cni EKS addon
+// Add the vpc-cni EKS addoncat
 // Seems that this is being needed by the aws-node daemonset
 new aws.eks.Addon("vpc-cni-addon", {
     clusterName: cluster.eksCluster.name,
@@ -36,3 +36,10 @@ new aws.eks.Addon("vpc-cni-addon", {
 
 // Export the cluster's kubeconfig.
 export const kubeconfig = cluster.kubeconfig;
+
+pulumi.log.info(`
+Use can access the cluster like this:
+
+$ pulumi stack output kubeconfig > kubeconfig.json
+$ KUBECONFIG=./kubeconfig.json kubectl get nodes
+`);
