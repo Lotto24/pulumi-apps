@@ -25,5 +25,14 @@ const cluster = new eks.Cluster("cluster", {
     storageClasses: storageClass,
 });
 
+// Add the vpc-cni EKS addon
+// Seems that this is being needed by the aws-node daemonset
+new aws.eks.Addon("vpc-cni-addon", {
+    clusterName: cluster.eksCluster.name,
+    addonName: "vpc-cni",
+    addonVersion: "v1.15.1-eksbuild.1",
+});
+
+
 // Export the cluster's kubeconfig.
 export const kubeconfig = cluster.kubeconfig;
