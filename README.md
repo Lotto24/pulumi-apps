@@ -13,7 +13,8 @@ $ pulumi new https://github.com/Lotto/pulumi-apps/tree/lotto24/eks
 ```
 
 ### Note:
-If you want to use the 'master' branch you can just use
+If you want to use the 'master' branch you can just use the commands below.
+
 But since we're on the 'lotto24' branch, we should always use the above
 
 ```bash
